@@ -20,7 +20,7 @@ final AllFunction _allFunction = AllFunction();
 class _HomeNewsViewState extends State<HomeNewsView> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 4), () => getNews());
+    Future.delayed(const Duration(seconds: 8), () => getNews());
     super.initState();
   }
 

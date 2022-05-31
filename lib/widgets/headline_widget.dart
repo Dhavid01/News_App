@@ -4,7 +4,7 @@ import 'package:news/utils/color.dart';
 import 'package:news/utils/text.dart';
 
 class HeadlineCard extends StatelessWidget {
-  HeadlineCard({
+  const HeadlineCard({
     Key? key,
     required this.title,
     required this.topic,

@@ -1,16 +1,14 @@
-// import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:news/core/constants/imageKeys.dart';
 import 'package:news/utils/all_functions.dart';
-// import 'package:news/utils/color.dart';
 import 'package:news/utils/text.dart';
+import 'package:news/views/home/components/bottomLoading.dart';
 import 'package:news/views/home/components/home_news_view.dart';
 import 'package:news/views/home/components/tabs.dart';
 import 'package:news/views/news/news_view.dart';
 import 'package:news/widgets/headline_skeleton.dart';
 import 'package:news/widgets/headline_widget.dart';
 import 'package:sliver_tools/sliver_tools.dart';
-import 'dart:math';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../../core/constants/apiKeys.dart';
@@ -32,17 +30,32 @@ class _HomeViewState extends State<HomeView> {
   ScrollController scrollController = ScrollController();
 
   List<String> tabsList = [
-    "Politics",
-    "Business",
     "Sports",
     "Entertainment",
-    "Travel",
     "Music",
+    "Politics",
+    "Business",
+    "Travel",
     "Public",
   ];
 
   @override
   void initState() {
+    scrollController.addListener(() {
+      if (scrollController.position.pixels ==
+              scrollController.position.maxScrollExtent &&
+          _allFunction.newsList.isNotEmpty) {
+        print("i want more");
+        Future.delayed(
+          const Duration(seconds: 0),
+          () => initGetMore(
+            tabsList[selectedIndex],
+          ),
+        );
+        setState(() {});
+        print("i have more");
+      }
+    });
     Future.delayed(
         const Duration(seconds: 2), () => getNews(tabsList[selectedIndex]));
 
@@ -55,6 +68,11 @@ class _HomeViewState extends State<HomeView> {
       _allFunction.newsList;
     });
     print(_allFunction.newsList);
+  }
+
+  initGetMore(q) async {
+    _allFunction.getMoreNews(tabsList[selectedIndex]);
+    setState(() {});
   }
 
   @override
@@ -148,7 +166,7 @@ class _HomeViewState extends State<HomeView> {
                         _allFunction.newsList.isEmpty
                             ? 3
                             : _allFunction.newsList.length,
-                        (index) => GestureDetector(
+                        (index) => GestureDetector( 
                               onTap: () {
                                 if (_allFunction.newsList.isNotEmpty) {
                                   Navigator.push(
@@ -200,20 +218,15 @@ class _HomeViewState extends State<HomeView> {
                                     ),
                             ))
                   ],
-                ))
+                )),
+                if (_allFunction.newsList.isNotEmpty)
+                  const SliverToBoxAdapter(
+                    child: BottomLoading(),
+                  )
               ],
             )),
           ],
         ),
-
-        // const HomeNewsView(),
-        // const SizedBox(
-        //   height: 10,
-        // ),
-        // AppText.heading(
-        //   "Latest News",
-        //   color: Colors.black,
-        // )
       ),
     );
   }

@@ -1,8 +1,4 @@
-import 'dart:convert';
-
-import 'package:news/core/constants/storage_keys.dart';
 import 'package:news/services/news_services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AllFunction {
   List<Map<String, dynamic>> newsList = [];
