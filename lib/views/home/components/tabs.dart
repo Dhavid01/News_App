@@ -16,7 +16,7 @@ class Tabs extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20), color: color),
         child: Center(
-            child: AppText.captionMedium(
+            child: AppText.caption(
           text,
           color: Colors.black,
         )),

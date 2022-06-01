@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:news/core/constants/apiKeys.dart';
 import 'package:news/utils/all_functions.dart';
 import 'package:news/utils/color.dart';
 import 'package:news/utils/text.dart';
+import 'package:news/views/news/news_view.dart';
 import 'package:news/views/search/search_bar.dart';
 import 'package:news/widgets/headline_skeleton.dart';
 import 'package:news/widgets/headline_widget.dart';
@@ -107,6 +109,7 @@ class _SearchViewState extends State<SearchView> {
           ),
           SliverPinnedHeader(
               child: Container(
+            color: Colors.white,
             padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
             child: AppText.headingMeduim(
               widget.q == null ? "" : 'Search result for "${widget.q!}"',
@@ -129,27 +132,50 @@ class _SearchViewState extends State<SearchView> {
                         children: [
                           ...List.generate(
                               _allFunction.searchNewsList.length,
-                              (index) => HeadlineCard(
-                                    handle: _allFunction.searchNewsList[index]
-                                        ["twitter_account"] ??= "",
-                                    body: _allFunction.searchNewsList[index]
-                                        ["summary"] ??= "",
-                                    time: timeago.format(DateTime.parse(
-                                        _allFunction.searchNewsList[index]
-                                            ["published_date"])),
-                                    rights: _allFunction.searchNewsList[index]
-                                        ["rights"] ??= "",
-                                    topic: _allFunction.searchNewsList[index]
-                                        ["topic"] ??= "",
-                                    title: _allFunction.searchNewsList[index]
-                                        ["title"] ??= "",
-                                    image: _allFunction.searchNewsList[index]
-                                                ["media"] ==
-                                            ""
-                                        ? ImageKeys.noImage
-                                        : _allFunction.searchNewsList[index]
-                                                ["media"] ??
-                                            ImageKeys.noImage,
+                              (index) => GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => NewsView(
+                                                  image: _allFunction.searchNewsList[index]
+                                                              [ApiKeys.image] ==
+                                                          ApiKeys.emptyString
+                                                      ? ImageKeys.noImage
+                                                      : _allFunction.searchNewsList[index]
+                                                              [ApiKeys.image] ??
+                                                          ImageKeys.noImage,
+                                                  author: _allFunction
+                                                              .searchNewsList[index]
+                                                          [ApiKeys.author] ??
+                                                      "",
+                                                  time: timeago.format(DateTime.parse(
+                                                      _allFunction.searchNewsList[index][ApiKeys.time])),
+                                                  title: _allFunction.searchNewsList[index][ApiKeys.title] ??= "",
+                                                  body: _allFunction.searchNewsList[index][ApiKeys.body] ??= "")));
+                                    },
+                                    child: HeadlineCard(
+                                      handle: _allFunction.searchNewsList[index]
+                                          ["twitter_account"] ??= "",
+                                      body: _allFunction.searchNewsList[index]
+                                          ["summary"] ??= "",
+                                      time: timeago.format(DateTime.parse(
+                                          _allFunction.searchNewsList[index]
+                                              ["published_date"])),
+                                      rights: _allFunction.searchNewsList[index]
+                                          ["rights"] ??= "",
+                                      topic: _allFunction.searchNewsList[index]
+                                          ["topic"] ??= "",
+                                      title: _allFunction.searchNewsList[index]
+                                          ["title"] ??= "",
+                                      image: _allFunction.searchNewsList[index]
+                                                  ["media"] ==
+                                              ""
+                                          ? ImageKeys.noImage
+                                          : _allFunction.searchNewsList[index]
+                                                  ["media"] ??
+                                              ImageKeys.noImage,
+                                    ),
                                   ))
                         ],
                       ),
