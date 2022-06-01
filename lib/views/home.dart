@@ -32,7 +32,7 @@ class _HomeViewState extends State<Home> {
           onPageChanged: onPageChange,
           controller: _pageController,
           children: const [
-            // HomeView(),
+            HomeView(),
             SearchView(),
             // BookmarkView(),
           ],
@@ -40,12 +40,12 @@ class _HomeViewState extends State<Home> {
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.transparent,
           items: const <BottomNavigationBarItem>[
-            // BottomNavigationBarItem(
-            //     icon: Icon(
-            //       Icons.home,
-            //       size: 25,
-            //     ),
-            //     label: ""),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.home,
+                  size: 25,
+                ),
+                label: ""),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.search,
@@ -68,3 +68,4 @@ class _HomeViewState extends State<Home> {
     );
   }
 }
+ 

@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:news/utils/all_functions.dart';
 import 'package:news/utils/color.dart';
 import 'package:news/utils/text.dart';
-import 'package:news/views/news/news_view.dart';
 import 'package:news/views/search/search_bar.dart';
 import 'package:news/widgets/headline_skeleton.dart';
 import 'package:news/widgets/headline_widget.dart';
 import 'package:sliver_tools/sliver_tools.dart';
+
+import 'package:timeago/timeago.dart' as timeago;
 
 import '../../core/constants/imageKeys.dart';
 
@@ -75,6 +76,7 @@ class _SearchViewState extends State<SearchView> {
               children: [
                 GestureDetector(
                   onTap: () {
+                    // _allFunction.searchNewsList.clear();
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -105,41 +107,53 @@ class _SearchViewState extends State<SearchView> {
           ),
           SliverPinnedHeader(
               child: Container(
-                  padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
-                  child: AppText.headingMeduim(widget.q == null
-                      ? ""
-                      : 'Search result for "${widget.q!}"'))),
-          SliverToBoxAdapter(
-            child: Column(
-              children: [
-                ...List.generate(
-                    _allFunction.searchNewsList.length,
-                    (index) => GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => NewsView(
-                                        image: "image",
-                                        author: "author",
-                                        time: "time",
-                                        title: "title",
-                                        body: "body")));
-                          },
-                          child: _allFunction.searchNewsList.isEmpty
-                              ? const HeadlineSkeletonCard()
-                              : HeadlineCard(
-                                  title: "title",
-                                  topic: "topic",
-                                  image: "image",
-                                  time: "time",
-                                  rights: "rights",
-                                  body: "body",
-                                  handle: "handle"),
-                        ))
-              ],
+            padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
+            child: AppText.headingMeduim(
+              widget.q == null ? "" : 'Search result for "${widget.q!}"',
+              color: Colors.black,
             ),
-          )
+          )),
+          widget.q == null
+              ? const SliverToBoxAdapter(child: SizedBox())
+              : _allFunction.searchNewsList.isEmpty
+                  ? SliverToBoxAdapter(
+                      child: Column(
+                        children: [
+                          ...List.generate(
+                              6, (index) => const HeadlineSkeletonCard())
+                        ],
+                      ),
+                    )
+                  : SliverToBoxAdapter(
+                      child: Column(
+                        children: [
+                          ...List.generate(
+                              _allFunction.searchNewsList.length,
+                              (index) => HeadlineCard(
+                                    handle: _allFunction.searchNewsList[index]
+                                        ["twitter_account"] ??= "",
+                                    body: _allFunction.searchNewsList[index]
+                                        ["summary"] ??= "",
+                                    time: timeago.format(DateTime.parse(
+                                        _allFunction.searchNewsList[index]
+                                            ["published_date"])),
+                                    rights: _allFunction.searchNewsList[index]
+                                        ["rights"] ??= "",
+                                    topic: _allFunction.searchNewsList[index]
+                                        ["topic"] ??= "",
+                                    title: _allFunction.searchNewsList[index]
+                                        ["title"] ??= "",
+                                    image: _allFunction.searchNewsList[index]
+                                                ["media"] ==
+                                            ""
+                                        ? ImageKeys.noImage
+                                        : _allFunction.searchNewsList[index]
+                                                ["media"] ??
+                                            ImageKeys.noImage,
+                                  ))
+                        ],
+                      ),
+                    )
         ],
       )),
     );

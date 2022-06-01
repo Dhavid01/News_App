@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:news/utils/color.dart';
-import 'package:news/utils/text.dart';
 
 class BottomLoading extends StatelessWidget {
   const BottomLoading({Key? key}) : super(key: key);
@@ -12,7 +11,7 @@ class BottomLoading extends StatelessWidget {
       width: 20,
       child: Center(
         child: CircularProgressIndicator(
-          strokeWidth: 3,
+          strokeWidth: 1,
           color: kSecondaryColor,
         ),
       ),
