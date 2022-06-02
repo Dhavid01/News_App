@@ -13,13 +13,13 @@ class CarouselSkeleton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
         child: Padding(
-          padding: const EdgeInsets.all(40.0),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Stack(
             children: [
               // ignore: sized_box_for_whitespace
               Container(
                 width: double.infinity,
-                height: 270,
+                height: 220,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   color: kSkelenton,
@@ -66,7 +66,7 @@ class CarouselSkeleton extends StatelessWidget {
             ],
           ),
         ),
-        baseColor: Colors.grey,
+        baseColor: Colors.grey.withOpacity(0.6),
         highlightColor: kSkelenton);
   }
 }

@@ -12,7 +12,7 @@ class HeadlineSkeletonCard extends StatelessWidget {
     return Column(
       children: [
         Shimmer.fromColors(
-          baseColor: kTabColor.withOpacity(0.5),
+          baseColor: Colors.grey.withOpacity(0.6),
           highlightColor: kSkelenton,
           child: Container(
             // height: 200,
