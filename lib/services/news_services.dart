@@ -40,7 +40,7 @@ class NewsService {
     }
   }
 
-  Future<List<Map<String, dynamic>>> getTrendingNews(
+  Future<List<Map<String, dynamic>>> getLatestNews(
       {required String q, required int page}) async {
     try {
       http.Response response = await http.get(

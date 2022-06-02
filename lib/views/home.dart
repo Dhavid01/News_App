@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:news/utils/color.dart';
-// import 'package:news/views/bookmark/bookmark_view.dart';
 import 'package:news/views/home/home_view.dart';
 import 'package:news/views/search/search_view.dart';
 

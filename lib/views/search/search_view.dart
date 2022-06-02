@@ -9,9 +9,7 @@ import 'package:news/views/search/search_bar.dart';
 import 'package:news/widgets/headline_skeleton.dart';
 import 'package:news/widgets/headline_widget.dart';
 import 'package:sliver_tools/sliver_tools.dart';
-
 import 'package:timeago/timeago.dart' as timeago;
-
 import '../../core/constants/imageKeys.dart';
 
 class SearchView extends StatefulWidget {
@@ -78,7 +76,6 @@ class _SearchViewState extends State<SearchView> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    // _allFunction.searchNewsList.clear();
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -95,7 +92,7 @@ class _SearchViewState extends State<SearchView> {
                     child: Row(
                       children: [
                         AppText.captionMedium(widget.q == null
-                            ? "Search myNEWZ"
+                            ? "Search David's News"
                             : '"${widget.q!}"'),
                       ],
                     ),

@@ -36,7 +36,7 @@ class NewsView extends StatelessWidget {
                   children: [
                     Container(
                       width: 5,
-                      height: 60,
+                      height: 80,
                       color: kPrimaryColor,
                     ),
                     const SizedBox(

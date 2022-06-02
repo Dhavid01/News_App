@@ -19,7 +19,7 @@ class AllFunction {
   }
 
   getTrendingAndLatest(q, page) async {
-    trendingList = await _newsService.getTrendingNews(q: q, page: page);
+    trendingList = await _newsService.getLatestNews(q: q, page: page);
   }
 
   addBookmark(Map<String, dynamic> item) {

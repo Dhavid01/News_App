@@ -7,6 +7,7 @@ import 'package:news/views/home/components/news_card.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../../../core/constants/imageKeys.dart';
+import '../../../widgets/carousel_skeleton.dart';
 
 class HomeNewsView extends StatefulWidget {
   const HomeNewsView({Key? key}) : super(key: key);
@@ -38,7 +39,7 @@ class _HomeNewsViewState extends State<HomeNewsView> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      children: [_allFunction.trendingList.isEmpty ? const CarouselSkeleton() : 
         CarouselSlider(
           options: CarouselOptions(
               onPageChanged: (index, _) => upDateIndicator(index),
