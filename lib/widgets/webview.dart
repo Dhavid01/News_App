@@ -22,7 +22,7 @@ class _ExploreWebViewState extends State<ExploreWebView> {
             _webViewController.goBack();
             return false;
           } else {
-            return false;
+            return true;
           }
         },
         child: Scaffold(
