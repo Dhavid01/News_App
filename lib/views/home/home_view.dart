@@ -6,7 +6,6 @@ import 'package:news/views/home/components/bottomLoading.dart';
 import 'package:news/views/home/components/home_news_view.dart';
 import 'package:news/views/home/components/tabs.dart';
 import 'package:news/views/news/news_view.dart';
-import 'package:news/widgets/carousel_skeleton.dart';
 import 'package:news/widgets/headline_skeleton.dart';
 import 'package:news/widgets/headline_widget.dart';
 import 'package:sliver_tools/sliver_tools.dart';
@@ -174,6 +173,7 @@ class _HomeViewState extends State<HomeView> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => NewsView(
+                                            url: _allFunction.newsList[index][ApiKeys.url],
                                               image: _allFunction.newsList[index]
                                                           [ApiKeys.image] ==
                                                       ApiKeys.emptyString

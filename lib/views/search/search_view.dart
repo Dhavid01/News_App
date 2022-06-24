@@ -135,6 +135,7 @@ class _SearchViewState extends State<SearchView> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) => NewsView(
+                                                url: _allFunction.newsList[index][ApiKeys.url],
                                                   image: _allFunction.searchNewsList[index]
                                                               [ApiKeys.image] ==
                                                           ApiKeys.emptyString

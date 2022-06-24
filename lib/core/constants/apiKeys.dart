@@ -1,3 +1,4 @@
+// ignore: file_names
 class ApiKeys {
   static const String handle = "twitter_account";
   static const String body = "summary";
@@ -8,4 +9,5 @@ class ApiKeys {
   static const String image = "media";
   static const String author = "author";
   static const String emptyString = "";
+  static const String url = "link";
 }

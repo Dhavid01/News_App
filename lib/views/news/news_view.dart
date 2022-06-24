@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news/utils/color.dart';
 import 'package:news/utils/text.dart';
 import 'package:news/views/news/components/news_image_card.dart';
+import 'package:news/widgets/webview.dart';
 
 class NewsView extends StatelessWidget {
   const NewsView(
@@ -10,6 +11,7 @@ class NewsView extends StatelessWidget {
       required this.author,
       required this.time,
       required this.title,
+      required this.url,
       required this.body})
       : super(key: key);
   final String image;
@@ -17,6 +19,7 @@ class NewsView extends StatelessWidget {
   final String time;
   final String title;
   final String body;
+  final String url;
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +67,46 @@ class NewsView extends StatelessWidget {
                   body,
                   centered: false,
                 ),
+              ),
+              const SizedBox(height: 10),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Container(
+                      height: MediaQuery.of(context).size.height * (0.2 / 3),
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                          color: kPrimaryColor,
+                          borderRadius: BorderRadius.circular(20)),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ExploreWebView(
+                                        url: url,
+                                      )));
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            AppText.heading(
+                              "Explore",
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            const Icon(
+                              Icons.explore,
+                              color: Colors.white,
+                            )
+                          ],
+                        ),
+                      )),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
               )
             ],
           )
