@@ -104,9 +104,7 @@ class _HomeViewState extends State<HomeView> {
             Expanded(
                 child: CustomScrollView(
               slivers: [
-                 SliverToBoxAdapter(
-                  child: const HomeNewsView()
-                ),
+                SliverToBoxAdapter(child: const HomeNewsView()),
                 SliverToBoxAdapter(
                     child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -166,14 +164,15 @@ class _HomeViewState extends State<HomeView> {
                         _allFunction.newsList.isEmpty
                             ? 3
                             : _allFunction.newsList.length,
-                        (index) => GestureDetector( 
+                        (index) => GestureDetector(
                               onTap: () {
                                 if (_allFunction.newsList.isNotEmpty) {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => NewsView(
-                                            url: _allFunction.newsList[index][ApiKeys.url],
+                                              url: _allFunction.newsList[index]
+                                                  [ApiKeys.url],
                                               image: _allFunction.newsList[index]
                                                           [ApiKeys.image] ==
                                                       ApiKeys.emptyString
@@ -181,11 +180,12 @@ class _HomeViewState extends State<HomeView> {
                                                   : _allFunction.newsList[index]
                                                           [ApiKeys.image] ??
                                                       ImageKeys.noImage,
-                                              author: _allFunction.newsList[index]
-                                                      [ApiKeys.author] ??
-                                                  "",
-                                              time: timeago.format(DateTime.parse(
-                                                  _allFunction.newsList[index][ApiKeys.time])),
+                                              author:
+                                                  _allFunction.newsList[index]
+                                                          [ApiKeys.author] ??
+                                                      "",
+                                              time: timeago.format(
+                                                  DateTime.parse(_allFunction.newsList[index][ApiKeys.time])),
                                               title: _allFunction.newsList[index][ApiKeys.title],
                                               body: _allFunction.newsList[index][ApiKeys.body])));
                                 }

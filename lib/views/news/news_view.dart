@@ -74,9 +74,9 @@ class NewsView extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Container(
                       height: MediaQuery.of(context).size.height * (0.2 / 3),
-                      width: MediaQuery.of(context).size.width,
+                      width: MediaQuery.of(context).size.width * (1.7 / 3),
                       decoration: BoxDecoration(
-                          color: kPrimaryColor,
+                          color: kPrimaryColor.withOpacity(0.8),
                           borderRadius: BorderRadius.circular(20)),
                       child: GestureDetector(
                         onTap: () {
@@ -87,20 +87,10 @@ class NewsView extends StatelessWidget {
                                         url: url,
                                       )));
                         },
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            AppText.heading(
-                              "Explore",
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            const Icon(
-                              Icons.explore,
-                              color: Colors.white,
-                            )
-                          ],
+                        child: Center(
+                          child: AppText.heading(
+                            "Read More ...",
+                          ),
                         ),
                       )),
                 ),
