@@ -73,7 +73,7 @@ class HeadlineCard extends StatelessWidget {
                     children: [
                       AppText.captionMedium(
                         time,
-                        color: Colors.red,
+                        color: Colors.black,
                       ),
                     ],
                   ),
