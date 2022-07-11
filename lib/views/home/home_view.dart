@@ -104,7 +104,11 @@ class _HomeViewState extends State<HomeView> {
             Expanded(
                 child: CustomScrollView(
               slivers: [
-                SliverToBoxAdapter(child: const HomeNewsView()),
+                SliverToBoxAdapter(child: GestureDetector(
+                  onTap: (){
+                    if(_allFunction.newsList.isNotEmpty){}
+                  },
+                child: const HomeNewsView())),
                 SliverToBoxAdapter(
                     child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10),

@@ -71,7 +71,10 @@ class HeadlineCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      AppText.captionMedium(time),
+                      AppText.captionMedium(
+                        time,
+                        color: Colors.red,
+                      ),
                     ],
                   ),
                 ],

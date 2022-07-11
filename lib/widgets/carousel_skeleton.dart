@@ -1,6 +1,4 @@
 // ignore_for_file: sort_child_properties_last
-
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:news/utils/color.dart';
 import 'package:news/widgets/skeleton.dart';
